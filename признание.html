@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Признание ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(14px);
+            border-radius: 40px;
+            padding: 40px 30px;
+            max-width: 560px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.3s;
+        }
+
+        .step {
+            display: none;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .emoji-big {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: 0.25s;
+            backdrop-filter: blur(4px);
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.04);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-primary {
+            background: #ff6b9d;
+            border-color: #ff6b9d;
+            color: #1a1a2e;
+        }
+
+        .btn-primary:hover {
+            background: #ff8ab0;
+            border-color: #ff8ab0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-danger {
+            background: #ff3b5c;
+            border-color: #ff3b5c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #ff5a77;
+            border-color: #ff5a77;
+        }
+
+        .btn-success {
+            background: #4cd9a0;
+            border-color: #4cd9a0;
+            color: #1a1a2e;
+        }
+
+        .btn-success:hover {
+            background: #6be5b3;
+            border-color: #6be5b3;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(0.6);
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 16px auto 20px;
+            border-radius: 4px;
+        }
+
+        .highlight {
+            color: #ff8ab0;
+            font-weight: 600;
+        }
+
+        .small-note {
+            font-size: 14px;
+            opacity: 0.5;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 28px 18px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                width: 100%;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="app">
+
+        <!-- ШАГ 1 -->
+        <div class="step active" data-step="1">
+            <span class="emoji-big">💌</span>
+            <h1>Привет...</h1>
+            <p>
+                Я давно хотел(а) сказать тебе одну вещь.<br>
+                Но всё откладывал(а). Сегодня — самый подходящий момент.
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="goTo(2)">👉 Дальше</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 2 -->
+        <div class="step" data-step="2">
+            <span class="emoji-big">🤔</span>
+            <h2>Ты готов(а)?</h2>
+            <p>
+                Потому что после этого всё может измениться.<br>
+                <span class="highlight">Честно.</span>
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goTo(1)">🔙 Назад</button>
+                <button class="btn btn-primary" onclick="goTo(3)">😤 Да, готов!</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 3 -->
+        <div class="step" data-step="3">
+            <span class="emoji-big">💭</span>
+            <h2>Знаешь...</h2>
+            <p>
+                Мы проводим столько времени вместе —<br>
+                и каждый раз я ловлю себя на мысли, что<br>
+                <span class="highlight">ты — самое лучшее, что есть в моей жизни.</span>
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goTo(2)">🔙 Назад</button>
+                <button class="btn btn-primary" onclick="goTo(4)">❤️ Дальше</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 4 -->
+        <div class="step" data-step="4">
+            <span class="emoji-big">🥺</span>
+            <h2>И вот что я понял(а)...</h2>
+            <p>
+                Я <span class="highlight">очень сильно</span> к тебе привязан(а).<br>
+                И это не просто симпатия. Это что-то гораздо большее.
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goTo(3)">🔙 Назад</button>
+                <button class="btn btn-primary" onclick="goTo(5)">💞 Дальше</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 5 — ключевой выбор -->
+        <div class="step" data-step="5">
+            <span class="emoji-big">😳</span>
+            <h2>Ты мне...</h2>
+            <p>
+                <span class="highlight">Очень нравишься.</span><br>
+                Я не знаю, как у тебя, но у меня внутри всё переворачивается, когда я тебя вижу.
+            </p>
+            <div class="divider"></div>
+            <p style="font-size:20px; font-weight:600; margin-bottom:8px;">
+                Что скажешь?
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-danger" onclick="badEnding()">😬 Нет, прости</button>
+                <button class="btn btn-success" onclick="goTo(6)">😍 Да! Тоже!</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 6 — Хорошая концовка -->
+        <div class="step" data-step="6">
+            <span class="emoji-big">🎉❤️</span>
+            <h1>Ура!</h1>
+            <p>
+                Я так рад(а)!<br>
+                Ты даже не представляешь, сколько раз я прокручивал(а) этот момент в голове.<br><br>
+                <span class="highlight">Ты — мой человек.</span> И это официально 💫
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="resetAll()">🔄 Начать сначала</button>
+            </div>
+        </div>
+
+        <!-- ШАГ 7 — Плохая концовка (ловушка) -->
+        <div class="step" data-step="7">
+            <span class="emoji-big">😢</span>
+            <h2>Ой...</h2>
+            <p>
+                Ну... я понимаю.<br>
+                Но знай: мои чувства никуда не денутся.<br>
+                <span class="highlight">Я буду ждать.</span> Сколько понадобится.
+            </p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goTo(5)">🔙 Вернуться и подумать</button>
+                <button class="btn btn-danger" onclick="resetAll()">🔄 Начать сначала</button>
+            </div>
+        </div>
+
+        <div class="small-note" id="stepCounter">Шаг 1 из 7</div>
+
+    </div>
+
+    <script>
+        const steps = document.querySelectorAll('.step');
+        let currentStep = 1;
+        const totalSteps = 7;
+
+        function updateCounter() {
+            const counter = document.getElementById('stepCounter');
+            if (currentStep === 6 || currentStep === 7) {
+                counter.textContent = '🎯 Финал';
+            } else {
+                counter.textContent = `Шаг ${currentStep} из ${totalSteps - 2}`;
+            }
+        }
+
+        function goTo(stepNumber) {
+            // Скрыть все
+            steps.forEach(s => s.classList.remove('active'));
+
+            // Показать нужный
+            const target = document.querySelector(`[data-step="${stepNumber}"]`);
+            if (target) {
+                target.classList.add('active');
+                currentStep = stepNumber;
+                updateCounter();
+            }
+
+            // Прокрутка к контейнеру (для мобильных)
+            document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function badEnding() {
+            // Небольшая анимация отказа — переходим на шаг 7
+            goTo(7);
+        }
+
+        function resetAll() {
+            goTo(1);
+        }
+
+        // Инициализация
+        updateCounter();
+
+        // Доп. логика: если нажали "Нет, прости" — запоминаем
+        // (уже через badEnding)
+    </script>
+
+</body>
+</html>
